@@ -1,9 +1,12 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+
 import Movie from "./Movie";
 const Home = async () => {
 	const data = await fetch(
-		`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+		`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`,{
+			next:{
+				revalidate:5
+			}
+		}
 	);
 
 	const res = await data.json();
